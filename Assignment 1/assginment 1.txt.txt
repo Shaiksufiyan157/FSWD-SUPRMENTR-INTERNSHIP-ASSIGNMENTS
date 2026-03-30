@@ -1,0 +1,13 @@
+Part 1: Client-Server ArchitectureDefinition:Client-server architecture is a computing model where the workload is partitioned between two distinct entities: the Client (the requester) and the Server (the provider). They communicate over a network (like the Internet).
+Key Components : The Client: The device or software (e.g., Chrome, a mobile app) that initiates a request for services or resources. It handles the user interface and presentation.
+The Server: A powerful computer or program (e.g., an AWS EC2 instance running Node.js) that waits for incoming requests. It processes logic, accesses the database, and returns the requested data.
+The Network: The medium (internet/intranet) through which the data travels using protocols like HTTP/HTTPS.
+
+Part 2: Trace - What Happens When You Open a WebsiteScenario: You type www.example.com into your browser and press Enter.1. DNS Resolution (Finding the Address)The browser needs the IP address of the server hosting the website (computers don't understand domain names like "https://www.google.com/search?q=google.com").Check Caches: Browser checks its own cache OS cache Router cache.
+ISP Query: If not found, the ISP's DNS Recursive Resolver queries the Root Server  TLD Server (.com) Authoritative Name Server.
+Result: The IP address (e.g., 93.184.216.34) is returned to the browser.2. TCP/IP Handshake (Establishing Connection)Once the browser has the IP, it must establish a reliable connection with the server.3-Way Handshake: The browser sends a SYN packet (synchronize). The server replies with SYN-ACK (synchronize-acknowledge). The browser replies with ACK (acknowledge).Note: If using HTTPS, a TLS/SSL handshake also occurs here to encrypt the connection.
+
+3. The HTTP Request The browser sends a request message to the server.Method: Usually GET (retrieving data).Headers: Contains metadata (User-Agent, Cookies, Accept-Language).
+4. Server Processing The web server (e.g., Nginx, Apache) receives the request.It routes the request to the backend application (e.g., your Node.js/Express app).The application logic runs, perhaps querying a database (MongoDB/SQL) for information.5. The HTTP Response 
+The server sends a reply back to the browser.Status Code: 200 OK (Success), 404 Not Found, or 500 Server Error.Body: The actual content (HTML, JSON, CSS, etc.).6. Browser Parsing & RenderingThe browser receives the response and builds the page.
+DOM Tree: Parses HTML to build the Document Object Model.CSSOM: Parses CSS to build the style structure. Render Tree: Combines DOM + CSSOM. Paint: The browser "paints" the pixels onto your screen.
