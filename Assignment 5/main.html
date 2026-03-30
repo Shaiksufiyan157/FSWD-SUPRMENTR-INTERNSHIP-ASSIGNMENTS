@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input { 
+            display: block; 
+            width: 100%; 
+            padding: 8px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            box-sizing: border-box;
+        }
+        .error-msg { color: red; font-size: 0.8em; min-height: 1em; display: block; margin-top: 4px; }
+        button { padding: 10px 15px; cursor: pointer; }
+        #successMessage { margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Register Account</h2>
+
+    <form id="userForm">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter name">
+            <small class="error-msg"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter email">
+            <small class="error-msg"></small>
+        </div>
+
+        <button type="submit">Submit</button>
+        <div id="successMessage" style="display:none; color: green;">
+            Form submitted successfully!
+        </div>
+    </form>
+
+    <script>
+        const form = document.getElementById('userForm');
+        const successMsg = document.getElementById('successMessage');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page reload
+            let isValid = true;
+
+            // Reset success message on new attempt
+            successMsg.style.display = 'none';
+
+            // Username Validation
+            const username = document.getElementById('username');
+            if (username.value.trim().length < 3) {
+                showError(username, "Username must be at least 3 characters.");
+                isValid = false;
+            } else {
+                showSuccess(username);
+            }
+
+            // Email Validation (Simple Regex)
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                showError(email, "Please enter a valid email address.");
+                isValid = false;
+            } else {
+                showSuccess(email);
+            }
+
+            // Final check
+            if (isValid) {
+                successMsg.style.display = 'block';
+                form.reset();
+                
+                // Clear success borders after reset
+                [username, email].forEach(input => {
+                    input.style.borderColor = '#ccc';
+                });
+            }
+        });
+
+        function showError(input, message) {
+            const parent = input.parentElement;
+            parent.querySelector('.error-msg').innerText = message;
+            input.style.borderColor = 'red';
+        }
+
+        function showSuccess(input) {
+            const parent = input.parentElement;
+            parent.querySelector('.error-msg').innerText = '';
+            input.style.borderColor = 'green';
+        }
+    </script>
+
+</body>
+</html>
