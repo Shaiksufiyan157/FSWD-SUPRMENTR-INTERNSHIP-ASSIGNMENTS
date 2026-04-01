@@ -1,0 +1,104 @@
+/* --- Global Resets --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #1a202c;
+    line-height: 1.5;
+}
+
+/* --- Flexbox Hero Container --- */
+.hero-wrapper {
+    display: flex;
+    flex-direction: column; /* Mobile first */
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 3rem;
+}
+
+/* --- Content Section --- */
+.hero-content {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: #2d3748;
+}
+
+.hero-content p {
+    font-size: 1.125rem;
+    color: #4a5568;
+    margin-bottom: 2rem;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Image Section --- */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Button --- */
+.cta-button {
+    display: inline-block;
+    background-color: #4f46e5;
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.cta-button:hover {
+    background-color: #4338ca;
+    transform: translateY(-2px);
+}
+
+/* --- Desktop Responsiveness --- */
+@media (min-width: 768px) {
+    .hero-wrapper {
+        flex-direction: row; /* Switch to side-by-side */
+        text-align: left;
+        padding: 4rem;
+    }
+
+    .hero-content {
+        text-align: left;
+    }
+
+    .hero-content p {
+        margin-left: 0;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+}
